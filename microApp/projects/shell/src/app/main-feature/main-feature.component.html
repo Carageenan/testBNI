@@ -1,0 +1,49 @@
+<div class="content-cont">
+  <table class="comments-table">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Comment</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <th></th>
+        <th></th>
+        <th style="text-align: center">
+          <button class="createBtn" (click)="toggleModal()">Create</button>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let comment of comments">
+        <td>{{ comment.email }}</td>
+        <td>{{ comment.body }}</td>
+        <td class="button-cont">
+          <button class="editBtn" (click)="handleEdit(comment)">Edit</button>
+          <button class="deleteBtn" (click)="deleteComment(comment.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modalOverlay" *ngIf="modalVisible">
+  <form class="formGroup" #createForm="ngForm">
+    <h3 style="text-align: center">{{ position }} Comment</h3>
+    <label for="email" name="maill">Email</label>
+    <input type="email" name="email" [(ngModel)]="form.email" #email="ngModel" required />
+    <p *ngIf="email.invalid && (email.dirty || email.touched)" style="margin: 0; color: red; font-size: 12px">Email must be filled!</p>
+    <label for="comment">Comment</label>
+    <textarea id="comment" name="comment" [(ngModel)]="form.body" #comment="ngModel" required></textarea>
+    <p *ngIf="comment.invalid && (comment.dirty || comment.touched)" style="margin: 0; color: red; font-size: 12px">Comment must be filled!</p>
+    <button type="submit" (click)="position == 'Edit' ? editComment() : createComment()">Submit</button>
+    <button type="button" (click)="toggleModal()">Cancel</button>
+  </form>
+</div>
+
+<div class="modalOverlay" *ngIf="modalSuccessVisible">
+  <div class="modalSuccess">
+    <p>Success {{ position }}</p>
+    <button (click)="toggleSuccesModal()">Close</button>
+  </div>
+</div>

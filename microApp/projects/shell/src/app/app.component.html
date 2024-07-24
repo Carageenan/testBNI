@@ -1,0 +1,26 @@
+<div class="main-container">
+  <div class="sidebar-container">
+    <div class="btn-side">
+      <h3>Choose Menu:</h3>
+      <div>
+        <button class="btn" type="button" (click)="changeRoute('/chart')">Chart</button>
+      </div>
+      <div>
+        <button class="btn" type="button" (click)="changeRoute('/')">Comments</button>
+      </div>
+    </div>
+  </div>
+  <div class="arrange-other">
+    <div class="header-container">
+      <h1>Manage Comments App</h1>
+      <p>Your one-stop solution for managing user comments efficiently.</p>
+    </div>
+    <div class="content-container"><router-outlet></router-outlet></div>
+    <div class="footer-container">
+      <p>&copy; 2024 MicroFrontEnd by Ihsan. All rights reserved.</p>
+      <p>
+        Contact me: <a href="ihsan.erdi97@gmail.com">{{ "ihsan.erdi97@gmail.com" }}</a>
+      </p>
+    </div>
+  </div>
+</div>
